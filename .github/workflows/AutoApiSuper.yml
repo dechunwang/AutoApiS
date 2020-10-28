@@ -39,6 +39,7 @@ jobs:
         echo $KEY_LIST > keylist.txt
         sed -i '10 r idlist.txt' testapi.py
         sed -i '11 r keylist.txt' testapi.py
+        cat testapi.py
         echo $ID_LIST2 > idlist2.txt
         echo $KEY_LIST2 > keylist2.txt
         sed -i '12 r idlist2.txt' testapi.py
