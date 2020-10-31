@@ -37,13 +37,27 @@ jobs:
       run: | 
         echo $ID_LIST > idlist.txt
         echo $KEY_LIST > keylist.txt
-        sed -i '10 r idlist.txt' testapi.py
-        sed -i '11 r keylist.txt' testapi.py
-        cat testapi.py
+        sed -i '10 r idlist.txt' testapi2.py
+        sed -i '11 r keylist.txt' testapi2.py
         echo $ID_LIST2 > idlist2.txt
         echo $KEY_LIST2 > keylist2.txt
-        sed -i '12 r idlist2.txt' testapi.py
-        sed -i '13 r keylist2.txt' testapi.py
+        sed -i '12 r idlist2.txt' testapi2.py
+        sed -i '13 r keylist2.txt' testapi2.py
     - name: Test Api #Api调用
       run: | 
-        python testapi.py
+        python testapi2.py
+        
+    - name: Delete secrets config #删除机密
+      run: | 
+        rm -f testapi2.py
+        rm -f *.txt 
+    - name: Commit #上传新的refresh_token到仓库
+      run: |
+        git config --global user.email AutoupdateRobot@email.com
+        git config --global user.name AutoupdateRobot
+        git add .
+        git commit -m "update new refresh_token" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
