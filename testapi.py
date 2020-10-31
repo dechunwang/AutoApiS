@@ -85,6 +85,9 @@ def gettoken(refresh_token,a):
     jsontxt = json.loads(html.text)
     refresh_token = jsontxt['refresh_token']
     access_token = jsontxt['access_token']
+    path = 'token/{}.txt'.format(a)
+    with open(path, 'w+') as f:
+        f.write(refresh_token)
     return access_token
 def testapi(path,a,ls):
     fo = open(path, "r+")
