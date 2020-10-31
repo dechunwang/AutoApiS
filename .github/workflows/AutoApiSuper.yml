@@ -10,7 +10,7 @@ on:
   #  branches: 
   #    - master
   schedule:
-    - cron: '0 1,5,8 * * 1-5'
+    - cron: '0 1,5,8 * * *'
   watch:
     types: [started]
   workflow_dispatch:
@@ -36,6 +36,7 @@ jobs:
         ID_LIST2: ${{ secrets.ID_LIST2 }} # secrets_id 提供
         KEY_LIST2: ${{ secrets.KEY_LIST2 }} # secrets_key 提供
       run: | 
+        cp testapi.py testapi2.py
         echo $ID_LIST > idlist.txt
         echo $KEY_LIST > keylist.txt
         sed -i '10 r idlist.txt' testapi2.py
