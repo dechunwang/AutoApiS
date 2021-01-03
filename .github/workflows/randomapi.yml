@@ -37,6 +37,6 @@ jobs:
         git add .
         git commit -m "update new randapi" -a
     - name: Push changes
-      uses: ad-m/github-push-action@master
+      uses: ad-m/github-push-action@e65d44d2425bf690d1baf96202075143b88620b3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
